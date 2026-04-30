@@ -17,9 +17,11 @@ export class ChickensController
     console.log(`ChickensController : getChickenById(${id})`);
     
     const result = ChickensService.getChickenById(id);
-    if (result) {
+    if (result)
+    {
       res.status(200).json(result);
-    } else {
+    } else
+    {
       res.sendStatus(404);
     }
   };
