@@ -12,6 +12,7 @@ app.put('/api/v1/chickens/:id', ChickensController.replaceChicken);
 app.patch('/api/v1/chickens/:id', ChickensController.updateChicken);
 app.delete('/api/v1/chickens/:id', ChickensController.deleteChicken);
 
-app.listen(port, () => {
+app.listen(port, () => 
+{
     console.log(`Example app listening at http://localhost:${port}`);
 });
