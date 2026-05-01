@@ -39,13 +39,27 @@ export class ChickensController
   static replaceChicken = (req, res) =>
   {
     const id = req.params.id;
-    console.log('ChickenController : replaceChicken()');
+    console.log(`ChickensController : replaceChicken(${id})`);
 
-    const result = ChickensService.replaceChicken(req.body);
+    const result = ChickensService.replaceChicken(id, req.body);
     res.status(200).json(result);
   }
 
+
   // updateChicken
+  static updateChicken = (req, res) =>
+  {
+    const id = req.params.id;
+    console.log(`ChickensController : updateChicken(${id})`);
+
+    const result = ChickensService.updateChicken(id, req.body);
+    if (!result)
+    {
+      res.sendStatus(404);
+      return;
+    }
+    res.status(200).json.result;
+  }
 
   // deleteChicken
 }

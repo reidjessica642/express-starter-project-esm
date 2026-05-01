@@ -26,15 +26,22 @@ export class ChickensService
   }
 
   // replaceChicken
-  static creplaceChicken = (id, replaceChicken) =>
+  static replaceChicken = (id, replaceChicken) =>
   {
     console.log('ChickenService : replaceChicken()');
 
     replaceChicken.id = id;
-    return ChickensRepository.replaceChicken(replaceChicken);
+    return ChickensRepository.replaceChicken(id, replaceChicken);
   }
 
   // updateChicken
+  static updateChicken = (id, updateChicken) =>
+  {
+    console.log('ChickenService : updateChicken()');
+
+    replaceChicken.id = id;
+    return ChickensRepository.updateChicken(id, updateChicken);
+  }
 
   // deleteChicken
 }

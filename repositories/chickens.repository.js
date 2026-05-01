@@ -47,11 +47,12 @@ export class ChickensRepository
   {
     console.log(`\t\tChickensRepository: createChicken()`);
 
+    CHICKENS.push(newChicken);
     return newChicken;
   }
 
   // replaceChicken
-  static replaceChickenChicken = (id, replaceChicken) =>
+  static replaceChicken = (id, replaceChicken) =>
   {
     console.log(`\t\tChickensRepository: replaceChicken()`);
 
@@ -62,6 +63,25 @@ export class ChickensRepository
   }
 
   // updateChicken
+  static updateChicken = (id, updateChicken) =>
+  {
+    console.log(`\t\tChickensRepository: updateChicken()`);
+
+    // what if it can't be found
+    const chicken = CHICKENS.find(c => c.id === id);
+
+    if (!chicken)
+    {
+      return null;
+    }
+    
+    Object.keys(updateChicken).forEach((prop) =>
+    {
+      chicken[prop] = updateChicken[prop];
+    });
+
+    return chicken;
+  }
 
   // deleteChicken
 }
