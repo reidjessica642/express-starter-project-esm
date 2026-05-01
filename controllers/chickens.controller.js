@@ -27,8 +27,23 @@ export class ChickensController
   };
 
   // createChicken
+  static createChicken = (req, res) =>
+  {
+    console.log('ChickenController : createChicken()');
+
+    const result = ChickensService.createChicken(req.body);
+    res.status(200).json(result);
+  }
 
   // replaceChicken
+  static replaceChicken = (req, res) =>
+  {
+    const id = req.params.id;
+    console.log('ChickenController : replaceChicken()');
+
+    const result = ChickensService.replaceChicken(req.body);
+    res.status(200).json(result);
+  }
 
   // updateChicken
 
