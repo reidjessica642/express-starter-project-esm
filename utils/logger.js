@@ -4,9 +4,11 @@ const { combine, timestamp, label, printf } = format;
 
 const level = 'silly';
 
-const myFormat = printf(({ level, message, label, timestamp }) => {
+const myFormat = printf(({ level, message, label, timestamp }) => 
+{
   //return `${timestamp} [${label}] ${level}: ${message}`;
-  return JSON.stringify({
+  return JSON.stringify(
+  {
     logLevel: level,
     message,
     timestamp,
@@ -14,7 +16,8 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
   });
 });
 
-export const logger = createLogger({
+export const logger = createLogger(
+{
   level,
   format: combine(
     label({ label: 'CHICKENS-API' }),
