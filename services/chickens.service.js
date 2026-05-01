@@ -1,25 +1,26 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ChickensRepository } from '../repositories/chickens.repository.js';
+import { logger } from './utils/logger.js';
 
 export class ChickensService
 {
   static getChickens = () =>
   {
-    console.log('\tChickensService: getChickens()');
+    logger.debug('ChickensService: getChickens()');
     return ChickensRepository.getChickens();
   }
 
   // getChickenById
   static getChickenById = (id) =>
   {
-    console.log(`\tChickensService: getChickenById(${id})`);
+    logger.debug(`ChickensService: getChickenById(${id})`);
     return ChickensRepository.getChickenById(id);
   }
 
   // createChicken
   static createChicken = (newChicken) =>
   {
-    console.log('ChickenService : createChicken()');
+    logger.debug('ChickenService : createChicken()');
 
     newChicken.id = uuid();
     return ChickensRepository.createChicken(newChicken);
@@ -28,7 +29,7 @@ export class ChickensService
   // replaceChicken
   static replaceChicken = (id, replaceChicken) =>
   {
-    console.log('ChickenService : replaceChicken()');
+    logger.debug('ChickenService : replaceChicken()');
 
     replaceChicken.id = id;
     return ChickensRepository.replaceChicken(id, replaceChicken);
@@ -37,7 +38,7 @@ export class ChickensService
   // updateChicken
   static updateChicken = (id, updateChicken) =>
   {
-    console.log(`\tChickensService: updateChicken()`);
+    logger.debug(`ChickensService: updateChicken()`);
 
     updateChicken.id = id;
     return ChickensRepository.updateChicken(id, updateChicken);
@@ -46,7 +47,7 @@ export class ChickensService
   // deleteChicken
   static deleteChicken = (id) =>
   {
-    console.log(`\tChickensService: deleteChicken()`);
+    logger.debug(`ChickensService: deleteChicken()`);
 
     return ChickensRepository.deleteChicken(id);
   }

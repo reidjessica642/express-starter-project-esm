@@ -1,10 +1,11 @@
 import { ChickensService } from '../services/chickens.service.js';
+import { logger } from './utils/logger.js';
 
 export class ChickensController
 {
   static getChickens = (req, res) =>
   {
-    console.log('ChickensController : getChickens()');
+    logger.debug('ChickensController : getChickens()');
     
     const result = ChickensService.getChickens();
     res.status(200).json(result);
@@ -14,7 +15,7 @@ export class ChickensController
   static getChickenById = (req, res) =>
   {
     const id = req.params.id;
-    console.log(`ChickensController : getChickenById(${id})`);
+    logger.debug(`ChickensController : getChickenById(${id})`);
     
     const result = ChickensService.getChickenById(id);
     if (result)
@@ -29,7 +30,7 @@ export class ChickensController
   // createChicken
   static createChicken = (req, res) =>
   {
-    console.log('ChickenController : createChicken()');
+    logger.debug('ChickenController : createChicken()');
 
     const result = ChickensService.createChicken(req.body);
     res.status(200).json(result);
@@ -39,7 +40,7 @@ export class ChickensController
   static replaceChicken = (req, res) =>
   {
     const id = req.params.id;
-    console.log(`ChickensController : replaceChicken(${id})`);
+    logger.debug(`ChickensController : replaceChicken(${id})`);
 
     const result = ChickensService.replaceChicken(id, req.body);
     res.status(200).json(result);
@@ -50,7 +51,7 @@ export class ChickensController
   static updateChicken = (req, res) =>
   {
     const id = req.params.id;
-    console.log(`ChickensController : updateChicken(${id})`);
+    logger.debug(`ChickensController : updateChicken(${id})`);
 
     const result = ChickensService.updateChicken(id, req.body);
     if (!result)
@@ -66,7 +67,7 @@ export class ChickensController
   static deleteChicken = (req, res) =>
   {
     const id = req.params.id;
-    console.log(`ChickensController : deleteChicken(${id})`);
+    logger.debug(`ChickensController : deleteChicken(${id})`);
 
     const result = ChickensService.deleteChicken(id);
     if (!result)

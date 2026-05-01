@@ -1,3 +1,5 @@
+import { logger } from './utils/logger.js';
+
 let CHICKENS = [
   {
     id: '1',
@@ -29,7 +31,7 @@ export class ChickensRepository
 {
   static getChickens = () =>
   {
-    console.log('\t\tChickensRepository: getChickens()');
+    logger.debug('ChickensRepository: getChickens()');
 
     return CHICKENS;
   }
@@ -37,7 +39,7 @@ export class ChickensRepository
   // getChickenById
   static getChickenById = (id) =>
   {
-    console.log(`\t\tChickensRepository: getChickenById(${id})`);
+    logger.debug(`ChickensRepository: getChickenById(${id})`);
 
     return CHICKENS.find(c => c.id === id);
   }
@@ -45,7 +47,7 @@ export class ChickensRepository
   // createChicken
   static createChicken = (newChicken) =>
   {
-    console.log(`\t\tChickensRepository: createChicken()`);
+    logger.debug(`ChickensRepository: createChicken()`);
 
     CHICKENS.push(newChicken);
     return newChicken;
@@ -54,7 +56,7 @@ export class ChickensRepository
   // replaceChicken
   static replaceChicken = (id, replaceChicken) =>
   {
-    console.log(`\t\tChickensRepository: replaceChicken()`);
+    logger.debug(`ChickensRepository: replaceChicken()`);
 
     CHICKENS = CHICKENS.filter(c => c.id !== id);
     CHICKENS.push(replaceChicken);
@@ -65,7 +67,7 @@ export class ChickensRepository
   // updateChicken
   static updateChicken = (id, updateChicken) =>
   {
-    console.log(`\t\tChickensRepository: updateChicken()`);
+    logger.debug(`ChickensRepository: updateChicken()`);
 
     const chicken = CHICKENS.find(c => c.id === id);
 
@@ -86,7 +88,7 @@ export class ChickensRepository
   // deleteChicken
   static deleteChicken = (id) =>
   {
-    console.log(`\t\tChickensRepository: deleteChicken()`);
+    logger.debug(`ChickensRepository: deleteChicken()`);
 
     const originalSize = CHICKENS.length;
     CHICKENS = CHICKENS.filter(c => c.id !== id);
