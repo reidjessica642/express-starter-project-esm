@@ -37,11 +37,17 @@ export class ChickensService
   // updateChicken
   static updateChicken = (id, updateChicken) =>
   {
-    console.log('ChickenService : updateChicken()');
+    console.log(`\tChickensService: updateChicken()`);
 
-    replaceChicken.id = id;
+    updateChicken.id = id;
     return ChickensRepository.updateChicken(id, updateChicken);
   }
 
   // deleteChicken
+  static deleteChicken = (id) =>
+  {
+    console.log(`\tChickensService: deleteChicken()`);
+
+    return ChickensRepository.deleteChicken(id);
+  }
 }

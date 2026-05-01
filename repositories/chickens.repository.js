@@ -67,21 +67,31 @@ export class ChickensRepository
   {
     console.log(`\t\tChickensRepository: updateChicken()`);
 
-    // what if it can't be found
     const chicken = CHICKENS.find(c => c.id === id);
 
-    if (!chicken)
-    {
+    if (!chicken) {
       return null;
     }
-    
+
     Object.keys(updateChicken).forEach((prop) =>
     {
       chicken[prop] = updateChicken[prop];
     });
 
+    
     return chicken;
   }
 
   // deleteChicken
+  static deleteChicken = (id) => {
+    console.log(`\t\tChickensRepository: deleteChicken()`);
+
+    const originalSize = CHICKENS.length;
+    CHICKENS = CHICKENS.filter(c => c.id !== id);
+    
+    if (originalSize === CHICKENS.length) {
+      return false;
+    }
+    return true;
+  }
 }

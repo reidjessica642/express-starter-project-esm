@@ -58,8 +58,23 @@ export class ChickensController
       res.sendStatus(404);
       return;
     }
-    res.status(200).json.result;
+
+    res.status(200).json(result);
   }
 
   // deleteChicken
+  static deleteChicken = (req, res) =>
+  {
+    const id = req.params.id;
+    console.log(`ChickensController : deleteChicken(${id})`);
+
+    const result = ChickensService.deleteChicken(id);
+    if (!result)
+    {
+      res.sendStatus(404);
+      return;
+    }
+
+    res.sendStatus(200);
+  }
 }
