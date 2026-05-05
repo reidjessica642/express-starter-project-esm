@@ -1,15 +1,11 @@
-import { json } from 'express';
 import { createLogger, format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, label, printf } = format;
 
-const level = 'silly';
+const level = 'debug';
 
-const myFormat = printf(({ level, message, label, timestamp }) => 
-{
-  //return `${timestamp} [${label}] ${level}: ${message}`;
-  return JSON.stringify(
-  {
+const myFormat = printf(({ level, message, label, timestamp }) => {
+  return JSON.stringify({
     logLevel: level,
     message,
     timestamp,
@@ -17,8 +13,7 @@ const myFormat = printf(({ level, message, label, timestamp }) =>
   });
 });
 
-export const logger = createLogger(
-{
+export const logger = createLogger({
   level,
   format: combine(
     label({ label: 'CHICKENS-API' }),
@@ -27,7 +22,7 @@ export const logger = createLogger(
   ),
   transports: [
     new transports.Console(),
-    // new transports.File({ filename: 'chickens-api.log' })
+    //new transports.File({ filename: 'chickens-api.log' })
     new DailyRotateFile({
       filename: '%DATE%-chickens-api.log',
       datePattern: 'YYYY-MM-DD',
@@ -37,22 +32,3 @@ export const logger = createLogger(
     })
   ]
 });
-
-/*
-logger.silly('Silly level');
-logger.debug('Debug level');
-logger.verbose('Verbose level');
-logger.http('http level');
-logger.info('Info level');
-logger.warn('Warn level');
-logger.error('Error level');
-
-
-const DailyRotateFile = require('winston-daily-rotate-file');
-logger.configure({
-  level: 'verbose',
-  transports: [
-    new DailyRotateFile(opts)
-  ]
-});
-*/
