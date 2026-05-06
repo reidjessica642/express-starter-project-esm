@@ -1,5 +1,5 @@
 import { ChickensService } from '../services/chickens.service.js';
-import { logger } from './utils/logger.js';
+import { logger } from '../utils/logger.js';
 
 export class ChickensController
 {
