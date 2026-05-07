@@ -1,14 +1,13 @@
 import { logger } from '../utils/logger.js';
 
-export const errorHandler = (err, req, res, next) =>
+export const errorHandlerMiddleware = (err, req, res, next) =>
 {
-    logger.error(`chickenAgeMiddleware invoked with error ${err.message}`);
+  logger.error(`errorHandlerMiddleware invoked with error : ${err.message}`);
 
-    res.status(500).json(
-    {
-        error: 'An error occured. Sorry.'
-    });
+  res.status(500).json({
+    error: 'An internal error occurred.... sorry.'
+  });
 
-    next();
-    return;
+  next();
+  return;
 }

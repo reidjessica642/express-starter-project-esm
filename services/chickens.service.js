@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { ChickensRepository } from '../repositories/chickens.repository.js';
 import { logger } from '../utils/logger.js';
 
@@ -18,9 +18,9 @@ export class ChickensService
   }
 
   // createChicken
-  static createChicken = (newChicken) =>
+  static createChicken = (newChicken) => 
   {
-    logger.debug('ChickenService : createChicken()');
+    logger.debug(`ChickensService: createChicken()`);
 
     newChicken.id = uuid();
     return ChickensRepository.createChicken(newChicken);
@@ -29,7 +29,7 @@ export class ChickensService
   // replaceChicken
   static replaceChicken = (id, replaceChicken) =>
   {
-    logger.debug('ChickenService : replaceChicken()');
+    logger.debug(`ChickensService: replaceChicken()`);
 
     replaceChicken.id = id;
     return ChickensRepository.replaceChicken(id, replaceChicken);

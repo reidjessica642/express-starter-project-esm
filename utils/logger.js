@@ -4,7 +4,8 @@ const { combine, timestamp, label, printf } = format;
 
 const level = 'debug';
 
-const myFormat = printf(({ level, message, label, timestamp }) => {
+const myFormat = printf(({ level, message, label, timestamp }) => 
+{
   return JSON.stringify({
     logLevel: level,
     message,
@@ -18,19 +19,18 @@ export const logger = createLogger({
   format: combine(
     label({ label: 'CHICKENS-API' }),
     timestamp(),
-    myFormat
+  myFormat
   ),
-  transports: [
+  transports:
+  [
     new transports.Console(),
     //new transports.File({ filename: 'chickens-api.log' })
-    /*
-    new DailyRotateFile({
+    /*new DailyRotateFile({
       filename: '%DATE%-chickens-api.log',
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '20m',
       maxFiles: '14d'
-    })
-    */
+    })*/
   ]
 });

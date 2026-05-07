@@ -2,28 +2,28 @@ import { logger } from '../utils/logger.js';
 
 export const chickenAgeMiddleware = (req, res, next) =>
 {
-    logger.info('chickenAgeMiddleware invoked');
-    if (!req.body.age)
+  logger.info('chickenAgeMiddleware invoked');
+
+  if (!req.body.age) 
     {
         logger.warn('chickenAgeMiddleware: no age property, calling next()');
         next();
         return;
     }
 
-    logger.info(`chickenAgeMiddleware: req.body.age = ${req.body.age}`);
+  logger.info(`chickenAgeMiddleware: req.body.age = ${req.body.age}`);
 
-    // validation
-    // const parsedAge = Number(req.body.age)
-    if (typeof req.body.age !== 'number')
+  // validation
+  if (typeof req.body.age !== 'number')
     {
-        res.status(400).json(
-        {
-            error: 'age property must be a number'
+        res.status(400).json({
+        error: 'age property must be a number',
         });
         return;
     }
-    
-    if (req.body.age < 1)
+
+
+  if (req.body.age < 1)
     {
         req.body.ageDescription = 'chick';
     } else if (req.body.age >= 1 && req.body.age < 3)
@@ -36,9 +36,8 @@ export const chickenAgeMiddleware = (req, res, next) =>
     {
         req.body.ageDescription = 'old';
     }
-    
-    // TODO: handle invalid prop
-    logger.info(`chickenAgeMiddleware: labeled chicken with age ${req.body.age} as ageDescription = ${req.body.ageDes}`);
-    next();
-    return;
+
+  logger.info(`chickenAgeMiddleware: labeled chicken with age ${req.body.age} as ageDescription = ${req.body.ageDescription}`);
+  next();
+  return;
 }
