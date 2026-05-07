@@ -15,6 +15,7 @@ app.use(chickenAgeMiddleware);
 // Error handler middleware - MUST BE THE LAST MIDDLEWARE
 app.use(errorHandlerMiddleware);
 
-app.listen(port, () => {
+app.listen(port, () =>
+{
     logger.info(`Example app listening at http://localhost:${port}`);
 });
