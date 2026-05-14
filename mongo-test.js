@@ -6,7 +6,14 @@ await client.connect();
 const db = client.db('arca');
 const COLLECTION = 'widgets';
 const result = await db.collection('widgets').find({
-    color: 'green'
+  color: {
+    exists: true
+  }
+}, {
+  sort: {
+    weight: -1,
+    name: -1
+  }
 }).toArray();
 console.log(result);
 
