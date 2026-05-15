@@ -51,10 +51,10 @@ console.log(result);
 // create/insert ----------------------------------
 /*
 const insertResult = await db.collection(COLLECTION).insertOne({
-    id: '6ba9f058-39c4-4b3f-b7f8-cabefbf8db83',
-    name: 'widget13',
-    color: 'green',
-    weight: 6,
+    id: '060a5737-2487-4526-98c4-9b9ecbad4040',
+    name: 'widget14',
+    color: 'khaki',
+    weight: 10,
     inStock: true,
     tags: ['tag1', 'tag2', 'tag3'],
     createDate: new Date(),
