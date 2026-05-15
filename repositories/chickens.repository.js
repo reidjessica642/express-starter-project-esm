@@ -1,4 +1,6 @@
 import { logger } from '../utils/logger.js';
+import { database } from '../utils/database.js';
+import { Constants } from '../utils/constants.js';
 
 let CHICKENS =
 [
@@ -34,11 +36,15 @@ let CHICKENS =
 
 export class ChickensRepository
 {
-  static getChickens = () =>
+  static getChickens = async () =>
   {
     logger.debug('ChickensRepository: getChickens()');
 
-    return CHICKENS;
+    return database.db.collection('chickens').find({}, {
+      projection: {
+        _id: 0
+      }
+    }).toArray();
   }
 
   // getChickenById
@@ -46,15 +52,20 @@ export class ChickensRepository
   {
     logger.debug(`ChickensRepository: getChickenById(${id})`);
 
-    return CHICKENS.find(c => c.id === id);
+    return database.db.collection('chickens').findOne({ id }, {
+      projection: {
+        _id: 0
+      }
+    });
   }
 
   // createChicken
-  static createChicken = (newChicken) =>
+  static createChicken = async (newChicken) =>
   {
     logger.debug(`ChickensRepository: createChicken()`);
-
-    CHICKENS.push(newChicken);
+    
+    await database.db.collection('chickens').insertOne(newChicken);
+    delete newChicken._id;
     return newChicken;
   }
 

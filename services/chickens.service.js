@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { ChickensRepository } from '../repositories/chickens.repository.js';
 import { logger } from '../utils/logger.js';
+import { database } from '../utils/database.js';
 
 export class ChickensService
 {

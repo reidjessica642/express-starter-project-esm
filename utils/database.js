@@ -1,4 +1,22 @@
 import { MongoClient } from 'mongodb';
+class Database {
+    client = null;
+    constructor() { }
+    setup = async (config) => {
+        // config.url
+        this.config = new MongoClient(config.url, {
+            appName: config.appName,
+            minPoolSize: config.minPoolSize,
+            maxPoolSize: config.maxPoolSize
+        });
+    };
+
+    await this.client.connect();
+this.db = this.client.db(confirm.database);
+};
+export const database = new Database();
+
+/*
 const url = 'mongodb://127.0.0.1:27017';
 const client = new MongoClient(url, {
   appName: 'ChickensAPI',
@@ -15,7 +33,7 @@ const result = await db.collection('widgets').findOneAndDelete({
 console.log(result);
 
 // update -----------------------------------------
-/*
+
 const result = await db.collection('widgets').updateOne({
   id: '123-456-0091',
   age: 40
