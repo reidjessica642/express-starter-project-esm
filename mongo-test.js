@@ -5,17 +5,48 @@ const client = new MongoClient(url);
 await client.connect();
 const db = client.db('arca');
 const COLLECTION = 'widgets';
+const result = await db.collection('widgets').findOneAndDelete({
+  id: '4025822e-cbff-48c4-83e1-7542e9284f87'
+});
+console.log(result);
+
+// update -----------------------------------------
+/*
+const result = await db.collection('widgets').updateOne({
+  id: '123-456-0091',
+  age: 40
+}, {
+  $set: {
+    fName: 'Jane',
+    lname: 'Bear'
+  }
+}, {
+  upsert: true
+}
+);
+console.log(result);
+*/
+
+// read/query -------------------------------------
+/*
 const result = await db.collection('widgets').find({
   color: {
-    exists: true
+    $exists: true
   }
 }, {
   sort: {
     weight: -1,
     name: -1
+  },
+  projection: {
+    _id: 0,
+    name: 1,
+    color: 1,
+    weight: 1
   }
 }).toArray();
 console.log(result);
+*/
 
 // create/insert ----------------------------------
 /*
