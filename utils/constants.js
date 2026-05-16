@@ -1,3 +1,4 @@
-export const Constants = {
+export const Constants =
+{
     CHICKENS_COLLECTION: 'chickens',
 };

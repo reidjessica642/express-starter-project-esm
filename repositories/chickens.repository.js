@@ -1,8 +1,8 @@
-import { logger } from '../utils/logger.js';
-import { database } from '../utils/database.js';
 import { Constants } from '../utils/constants.js';
+import { database } from '../utils/database.js';
+import { logger } from '../utils/logger.js';
 
-let CHICKENS =
+let CHICKENS = 
 [
   {
     id: '1',
@@ -34,82 +34,89 @@ let CHICKENS =
   }
 ];
 
-export class ChickensRepository
+export class ChickensRepository 
 {
-  static getChickens = async () =>
+  static getChickens = () => 
   {
     logger.debug('ChickensRepository: getChickens()');
 
-    return database.db.collection('chickens').find({}, {
-      projection: {
-        _id: 0
+    // TODO: Suppress _id
+    return database.db.collection(Constants.CHICKENS_COLLECTION).find(
+      {},
+      {
+        projection: {
+          _id: 0,
+        }
       }
-    }).toArray();
+    ).toArray();
   }
 
   // getChickenById
-  static getChickenById = (id) =>
+  static getChickenById = (id) => 
   {
     logger.debug(`ChickensRepository: getChickenById(${id})`);
 
-    return database.db.collection('chickens').findOne({ id }, {
-      projection: {
-        _id: 0
+    return database.db.collection(Constants.CHICKENS_COLLECTION).findOne(
+      { id },  // { id: id }
+      {
+        projection: {
+          _id: 0,
+        }
       }
-    });
+    );
   }
 
   // createChicken
-  static createChicken = async (newChicken) =>
+  static createChicken = async (newChicken) => 
   {
     logger.debug(`ChickensRepository: createChicken()`);
-    
-    await database.db.collection('chickens').insertOne(newChicken);
+
+    await database.db.collection(Constants.CHICKENS_COLLECTION).insertOne(newChicken);
     delete newChicken._id;
     return newChicken;
   }
 
   // replaceChicken
-  static replaceChicken = (id, replaceChicken) =>
+  static replaceChicken = (id, replaceChicken) => 
   {
     logger.debug(`ChickensRepository: replaceChicken()`);
 
     CHICKENS = CHICKENS.filter(c => c.id !== id);
     CHICKENS.push(replaceChicken);
-    
+
     return replaceChicken;
   }
 
   // updateChicken
-  static updateChicken = (id, updateChicken) =>
+  static updateChicken = (id, updateChicken) => 
   {
     logger.debug(`ChickensRepository: updateChicken()`);
 
     const chicken = CHICKENS.find(c => c.id === id);
 
-    if (!chicken)
+    if (!chicken) 
     {
       return null;
     }
 
-    Object.keys(updateChicken).forEach((prop) =>
+    Object.keys(updateChicken).forEach((prop) => 
     {
       chicken[prop] = updateChicken[prop];
     });
 
-    
+
     return chicken;
   }
 
   // deleteChicken
-  static deleteChicken = (id) =>
+  static deleteChicken = (id) => 
   {
     logger.debug(`ChickensRepository: deleteChicken()`);
 
     const originalSize = CHICKENS.length;
     CHICKENS = CHICKENS.filter(c => c.id !== id);
-    
-    if (originalSize === CHICKENS.length)
+
+    if (originalSize === CHICKENS.length) 
     {
       return false;
     }

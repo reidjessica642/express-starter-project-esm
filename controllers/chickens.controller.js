@@ -1,34 +1,34 @@
 import { ChickensService } from '../services/chickens.service.js';
 import { logger } from '../utils/logger.js';
 
-export class ChickensController
+export class ChickensController 
 {
-  static getChickens = async (req, res, next) =>
+  static getChickens = async (req, res, next) => 
   {
     logger.debug('ChickensController : getChickens()');
-    
+
     const result = await ChickensService.getChickens();
     res.status(200).json(result);
   };
 
   // getChickenById
-  static getChickenById = async (req, res) =>
+  static getChickenById = async (req, res) => 
   {
     const id = req.params.id;
     logger.debug(`ChickensController : getChickenById(${id})`);
 
     const result = await ChickensService.getChickenById(id);
-    if (result)
+    if (result) 
     {
       res.status(200).json(result);
-    } else
+    } else 
     {
       res.sendStatus(404);
     }
   };
 
   // createChicken
-  static createChicken = async (req, res) =>
+  static createChicken = async (req, res) => 
   {
     logger.debug('ChickensController : createChicken()');
 
@@ -37,7 +37,7 @@ export class ChickensController
   }
 
   // replaceChicken
-  static replaceChicken = (req, res) =>
+  static replaceChicken = (req, res) => 
   {
     const id = req.params.id;
     logger.debug(`ChickensController : replaceChicken(${id})`);
@@ -47,13 +47,13 @@ export class ChickensController
   }
 
   // updateChicken
-  static updateChicken = (req, res) =>
+  static updateChicken = (req, res) => 
   {
     const id = req.params.id;
     logger.debug(`ChickensController : updateChicken(${id})`);
 
     const result = ChickensService.updateChicken(id, req.body);
-    if (!result)
+    if (!result) 
     {
       res.sendStatus(404);
       return;
@@ -63,13 +63,13 @@ export class ChickensController
   }
 
   // deleteChicken
-  static deleteChicken = (req, res) =>
+  static deleteChicken = (req, res) => 
   {
     const id = req.params.id;
     logger.debug(`ChickensController : deleteChicken(${id})`);
 
     const result = ChickensService.deleteChicken(id);
-    if (!result)
+    if (!result) 
     {
       res.sendStatus(404);
       return;

@@ -10,7 +10,9 @@ const port = 3000;
 
 app.use(express.json());
 // TODO: make more precise on URL
-app.use(chickenAgeMiddleware);
+//app.use(chickenAgeMiddleware);
+
+app.use('/api/v1/chickens', chickenRouter);
 
 
 // Error handler middleware - MUST BE THE LAST MIDDLEWARE
@@ -24,9 +26,9 @@ const config =
     minPoolSize: 2,
     maxPoolSize: 10
 };
-
 await database.setup(config);
 
-app.listen(port, () => {
+app.listen(port, () => 
+{
     logger.info(`Example app listening at http://localhost:${port}`);
 });
