@@ -26,5 +26,8 @@
     "uuid": "^14.0.0",
     "winston": "^3.19.0",
     "winston-daily-rotate-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.5"
   }
 }
